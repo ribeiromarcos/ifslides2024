@@ -71,10 +71,10 @@
 % Slide principal
 
 \setbeamertemplate{title page}{%
+  \vspace*{-2cm}
   \hbox{%
     \begin{beamercolorbox}%
     [wd=\paperwidth,ht=\paperheight,dp=2em,center]{white}%
-      \vfill%
       {\LARGE\bfseries \inserttitle\par}%
       {\bfseries\insertsubtitle\par}%
       \vspace*{2em}%
@@ -103,6 +103,18 @@
  }%
 }%
 
+\newcommand{\cabecalhoplain}{%
+\hbox{%
+  \begin{beamercolorbox}[ht=18pt,dp=0.3cm,wd=0.75\paperwidth,left]{}%
+    \normalsize\bfseries\color{verde}\hspace{5mm}%
+       IFMG%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[dp=0.3cm,wd=0.23\paperwidth,right]{}%
+    \color{verde}\normalsize\insertframenumber%
+  \end{beamercolorbox}%
+ }%
+}%
+
 \setbeamertemplate{headline}{\cabecalho}%
 
 % ==================================================
@@ -110,9 +122,8 @@
 % Plano de fundo
 \newcommand{\fundoverde}{%
   \begin{tikzpicture}[remember picture, overlay]%
-   \node (ini) [minimum width=16pt] {};%
    \node (fundo)%
-   [xshift=2pt, yshift=24.5pt,anchor=north west,%
+   [xshift=3pt, yshift=-2pt,anchor=north west,%
    fill=verde,minimum width=\paperwidth-4pt,%
    minimum height=\paperheight-4pt, rounded corners=2mm] {};%
   \end{tikzpicture}%
@@ -128,8 +139,6 @@
   (ifmg.south west) -- (ifmg.north west) [rounded corners=5pt] -- cycle;%
   \end{tikzpicture}%
 }%
-
-\usebackgroundtemplate{\fundopadrao}%
 
 % ==================================================
 
@@ -163,7 +172,7 @@
 
 % Título centralizado
 \newcommand{\titulocentro}{%
-  \vspace*{8em}%
+  % \vspace*{8em}%
   \begin{center}%
     \insertframetitle%
   \end{center}%
@@ -173,18 +182,17 @@
 % Mudança ente frame padrão e plain
 \makeatletter %
 \define@key{beamerframe}{plain}[true]{%
-  \setbeamercolor{frametitle}{fg=white}%
-  \vspace*{-1cm} %
   \usebackgroundtemplate{\fundoverde}%
-  \setbeamertemplate{headline}{} %
+  \setbeamercolor{frametitle}{fg=white}%
+  \setbeamertemplate{headline}{\cabecalhoplain}%
   \setbeamertemplate{frametitle}{\titulocentro} %
   \setbeamercolor{structure}{fg = white} %
   \setbeamercolor{normal text}{fg = white} %
   \usebeamercolor[fg]{normal text} %
 }%
 \BeforeBeginEnvironment{frame}{%
-  \setbeamercolor{frametitle}{fg=verde}%
   \usebackgroundtemplate{\fundopadrao}%
+  \setbeamercolor{frametitle}{fg=verde}%
   \setbeamertemplate{headline}{\cabecalho} %
   \setbeamercolor{structure}{fg = verde} %
   \setbeamercolor{normal text}{fg = black} %
