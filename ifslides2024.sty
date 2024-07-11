@@ -1,0 +1,194 @@
+\ProvidesPackage{ifslides2024}
+% Tema do IFMG para Beamer
+% Marcos Roberto Ribeiro - marcos.ribeiro@ifmg.edu.br
+
+% ==================================================
+
+% Pacotes necessários
+\RequirePackage{adjustbox}                % Pacote para reduzir/ampliar
+\RequirePackage{ifthen}                   % Pacote para testar condições
+\RequirePackage{tikz}                     % Pacote para desenho
+\usetikzlibrary{shapes,positioning,fit}   % Bibliotecas para desenho
+\RequirePackage[T1]{fontenc}              % Seleção de códigos de fonte
+\RequirePackage[utf8]{inputenc}           % Codificação
+\RequirePackage[brazil]{babel}            % Babel em português
+\RequirePackage{helvet}                   % Fonte arial
+\renewcommand{\familydefault}{\sfdefault} % Define arial como fonte padrão
+\RequirePackage{biblatexfix}              % Referências
+
+% ==================================================
+
+% Comandos para página de título
+\newcommand{\titulo}{\title}              % Título
+\newcommand{\subtitulo}{\subtitle}        % Subtítulo
+\newcommand{\autor}{\author}              % Autor
+\providecommand{\insertemail}{}           % E-mail
+\newcommand{\email}[1]{%
+  \renewcommand{\insertemail}{#1}}%
+\newcommand{\data}{\date}%                % Data
+\providecommand{\insertinfo}{}            % Informaçõesa adicionais
+\newcommand{\info}[1]{%
+\renewcommand{\insertinfo}{#1}}%
+\providecommand{\insertcampus}{}          % Campus
+\newcommand{\campus}[1]{%
+  \renewcommand{\insertcampus}{#1}}%
+
+% ==================================================
+
+% Definição de cores
+\definecolor{verde}{RGB}{63,165,53}%
+\definecolor{cinza}{RGB}{128,128,128}%
+
+% ==================================================
+
+% Alterações no tema
+\usecolortheme[named=verde]{structure}   % Cor padrão verde
+\setbeamertemplate{navigation symbols}{} % Remove símbolos de navegação
+\setbeamertemplate{blocks}[rectangles]   % Blocos retangulares
+\setbeamerfont{frametitle}{series=\bfseries} % Título do slide em negrito
+\useinnertheme{rectangles}                % Tema interno de retângulos
+\setbeamercolor{section in toc}{fg=black} % Itens de sumário
+
+% Bloco de alerta
+\setbeamercolor{block body alerted}{bg=verde,fg=white}%
+\setbeamerfont{block title alerted}{series=\bfseries}%
+\setbeamercolor{block title alerted}{bg=verde,fg=white}%
+
+% Bibliografia
+\setbeamercolor{bibliography entry author}{fg=black}%
+\setbeamercolor{bibliography entry title}{fg=black}%
+\setbeamercolor{bibliography entry location}{fg=black}%
+\setbeamercolor{bibliography entry note}{fg=black}%
+\setbeamercolor{bibliography item}{fg=black}%
+\setlength{\bibitemsep}{1em}%
+
+% ==================================================
+
+% Mudança no tamanho das margens
+\setbeamersize{text margin left=5pt,text margin right=5pt}%
+
+% ==================================================
+% Slide principal
+
+\setbeamertemplate{title page}{%
+  \hbox{%
+    \begin{beamercolorbox}%
+    [wd=\paperwidth,ht=\paperheight,dp=2em,center]{white}%
+      \vfill%
+      {\LARGE\bfseries \inserttitle\par}%
+      {\bfseries\insertsubtitle\par}%
+      \vspace*{2em}%
+      \insertauthor\par%
+      \ifthenelse{\equal{\insertemail}{}}{}{\small\insertemail\par}%
+      \vspace*{2em}%
+      \ifthenelse{\equal{\insertinfo}{}}{}{\footnotesize\insertinfo\par}%
+      {\footnotesize\insertdate}\vspace*{2em}\par%
+      \includegraphics[width=1.5cm]{logoif}\par%
+    \end{beamercolorbox}%
+  }
+}
+
+% ==================================================
+% Cabeçalho
+
+\newcommand{\cabecalho}{%
+\hbox{%
+  \begin{beamercolorbox}[ht=18pt,dp=0.3cm,wd=0.75\paperwidth,left]{}%
+    \normalsize\bfseries\color{white}\hspace{5mm}%
+       IFMG%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[dp=0.3cm,wd=0.23\paperwidth,right]{}%
+    \color{gray}\normalsize\insertframenumber%
+  \end{beamercolorbox}%
+ }%
+}%
+
+\setbeamertemplate{headline}{\cabecalho}%
+
+% ==================================================
+
+% Plano de fundo
+\newcommand{\fundoverde}{%
+  \begin{tikzpicture}[remember picture, overlay]%
+   \node (ini) [minimum width=16pt] {};%
+   \node (fundo)%
+   [xshift=2pt, yshift=24.5pt,anchor=north west,%
+   fill=verde,minimum width=\paperwidth-4pt,%
+   minimum height=\paperheight-4pt, rounded corners=2mm] {};%
+  \end{tikzpicture}%
+}%
+
+\newcommand{\fundopadrao}{%
+  \begin{tikzpicture}%
+  \node (ini) {};%
+  \node (ifmg)
+  [below of=ini, node distance=10pt,minimum width=18mm,%
+  minimum height=0.5cm] {};%
+  \path[fill=verde] (ifmg.north east) -- (ifmg.south east) --%
+  (ifmg.south west) -- (ifmg.north west) [rounded corners=5pt] -- cycle;%
+  \end{tikzpicture}%
+}%
+
+\usebackgroundtemplate{\fundopadrao}%
+
+% ==================================================
+
+% Personalização do bloco padrão
+\setbeamercolor{block title}{fg=black}%
+\setbeamertemplate{block begin}{%
+  \begin{beamercolorbox}[wd=\linewidth,left]{block title}%
+    \begin{tikzpicture}[node distance=10pt,inner sep=0pt]%
+      \node (t) [text width=\linewidth-20pt, align=left] %
+        {\bfseries\insertblocktitle}; %
+      \node (es) [left=of t.north west] {}; %
+      \node (ei) [left=of t.south west] {}; %
+      \node (l) [fill=verde, minimum width=5pt, fit=(es) (ei)] {}; %
+    \end{tikzpicture} %
+    \vskip 0.5ex %
+  \end{beamercolorbox}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[wd=\linewidth]{block body}%
+} %
+\setbeamertemplate{block end}{ %
+  \end{beamercolorbox} %
+} %
+
+% ==================================================
+
+% Personalização do bloco exemplo
+\setbeamertemplate{block example begin}{} %
+\setbeamertemplate{block example end}{} %
+
+% ==================================================
+
+% Título centralizado
+\newcommand{\titulocentro}{%
+  \vspace*{8em}%
+  \begin{center}%
+    \insertframetitle%
+  \end{center}%
+  \vspace*{-1.5em}%
+}%
+
+% Mudança ente frame padrão e plain
+\makeatletter %
+\define@key{beamerframe}{plain}[true]{%
+  \setbeamercolor{frametitle}{fg=white}%
+  \vspace*{-1cm} %
+  \usebackgroundtemplate{\fundoverde}%
+  \setbeamertemplate{headline}{} %
+  \setbeamertemplate{frametitle}{\titulocentro} %
+  \setbeamercolor{structure}{fg = white} %
+  \setbeamercolor{normal text}{fg = white} %
+  \usebeamercolor[fg]{normal text} %
+}%
+\BeforeBeginEnvironment{frame}{%
+  \setbeamercolor{frametitle}{fg=verde}%
+  \usebackgroundtemplate{\fundopadrao}%
+  \setbeamertemplate{headline}{\cabecalho} %
+  \setbeamercolor{structure}{fg = verde} %
+  \setbeamercolor{normal text}{fg = black} %
+  \usebeamercolor[fg]{normal text} %
+  \setbeamertemplate{frametitle}{\insertframetitle} %
+} %
+\makeatother %
