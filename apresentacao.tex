@@ -1,15 +1,19 @@
 \documentclass[aspectratio=169]{beamer}
-% Tema
-\usepackage{ifslides2024}
-\usepackage{lipsum}
-% Referências
-\addbibresource{referencias.bib}
+% --------------------------------------------------
+% Opções para "aspectratio"
+% 43 ou 54: Formatos 4:3 ou 5:4 tradicionais para telas antigas
+% 169, 1610 ou 189: Formatos 16:9, 16:10 ou 18:9 widescrenn telas mais modernas
+% --------------------------------------------------
+\usepackage{ifslides2024} % Tema (não remover)
+\usepackage{lipsum}       % Gerador de texto dummy
+
+\addbibresource{referencias.bib} % Referências
 % Dados da Apresentação
 \titulo{Título da Apresentação}
 \subtitulo{Seminário 1 - Proposta de TCC}
 \autor{Nome do Autor}
 \email{autor@email.com}
-\info{%
+\info{% Informações adicionais (opcional)
   Curso de Engenharia de Computação \\%
   \textbf{Professor:} Marcos Ribeiro%
 }
