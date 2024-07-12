@@ -15,6 +15,7 @@
 \RequirePackage{helvet}                   % Fonte arial
 \renewcommand{\familydefault}{\sfdefault} % Define arial como fonte padrão
 \RequirePackage{biblatexfix}              % Referências
+\RequirePackage[threshold=3]{csquotes}    % Citações
 
 % ==================================================
 
@@ -123,9 +124,9 @@
 \newcommand{\fundoverde}{%
   \begin{tikzpicture}[remember picture, overlay]%
    \node (fundo)%
-   [xshift=3pt, yshift=-2pt,anchor=north west,%
-   fill=verde,minimum width=\paperwidth-4pt,%
-   minimum height=\paperheight-4pt, rounded corners=2mm] {};%
+   [xshift=3pt, yshift=-3pt,anchor=north west,%
+   fill=verde,minimum width=\paperwidth-6pt,%
+   minimum height=\paperheight-6pt, rounded corners=2mm] {};%
   \end{tikzpicture}%
 }%
 
