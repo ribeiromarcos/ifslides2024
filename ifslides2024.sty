@@ -54,6 +54,8 @@
 \setbeamercolor{block body alerted}{bg=verde,fg=white}%
 \setbeamerfont{block title alerted}{series=\bfseries}%
 \setbeamercolor{block title alerted}{bg=verde,fg=white}%
+\addtobeamertemplate{block alerted begin}{%
+  \setbeamercolor*{item}{fg=verde,fg=white}}{}%
 
 % Bibliografia
 \setbeamercolor{bibliography entry author}{fg=black}%
@@ -72,16 +74,17 @@
 % Slide principal
 
 \setbeamertemplate{title page}{%
-  \vspace*{-2cm}
+  \vspace*{-1.2cm}
   \hbox{%
     \begin{beamercolorbox}%
     [wd=\paperwidth,ht=\paperheight,dp=2em,center]{white}%
-      {\LARGE\bfseries \inserttitle\par}%
-      {\bfseries\insertsubtitle\par}%
-      \vspace*{2em}%
+      {\Large\bfseries \inserttitle\par}%
+      \vspace*{0.25em}
+      {\bfseries\itshape\insertsubtitle\par}%
+      \vspace*{1.5em}%
       \insertauthor\par%
       \ifthenelse{\equal{\insertemail}{}}{}{\small\insertemail\par}%
-      \vspace*{2em}%
+      \vspace*{1.5em}%
       \ifthenelse{\equal{\insertinfo}{}}{}{\footnotesize\insertinfo\par}%
       {\footnotesize\insertdate}\vspace*{2em}\par%
       \includegraphics[width=1.5cm]{logoif}\par%
@@ -146,7 +149,8 @@
 % Personalização do bloco padrão
 \setbeamercolor{block title}{fg=black}%
 \setbeamertemplate{block begin}{%
-  \begin{beamercolorbox}[wd=\linewidth,left]{block title}%
+  \vspace*{6.5pt}%
+  \begin{beamercolorbox}[wd=0.95\linewidth,left]{block title}%
     \begin{tikzpicture}[node distance=10pt,inner sep=0pt]%
       \node (t) [text width=\linewidth-20pt, align=left] %
         {\bfseries\insertblocktitle}; %
@@ -157,7 +161,7 @@
     \vskip 0.5ex %
   \end{beamercolorbox}%
   \usebeamerfont{block body}%
-  \begin{beamercolorbox}[wd=\linewidth]{block body}%
+  \begin{beamercolorbox}[wd=0.95\linewidth]{block body}%
 } %
 \setbeamertemplate{block end}{ %
   \end{beamercolorbox} %

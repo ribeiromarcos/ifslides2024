@@ -5,12 +5,12 @@
 % 169, 1610 ou 189: Formatos 16:9, 16:10 ou 18:9 widescrenn telas mais modernas
 % --------------------------------------------------
 \usepackage{ifslides2024} % Tema (não remover)
-\usepackage{lipsum}       % Gerador de texto dummy
+\usepackage{lipsum}       % Gerador de texto "dummy"
 
 \addbibresource{referencias.bib} % Referências
 % Dados da Apresentação
-\titulo{Título da Apresentação}
-\subtitulo{Seminário 1 - Proposta de TCC}
+\titulo{Título da apresentação}
+\subtitulo{Subtítulo}
 \autor{Nome do Autor}
 \email{autor@email.com}
 \info{% Informações adicionais (opcional)
@@ -64,7 +64,7 @@
 \begin{block}{Objetivo Geral}
   \lipsum[1][7-9]
 \end{block}
-\vskip1em
+\vspace{1em}
 \begin{block}{Objetivos Específicos}
   \begin{enumerate}
     \item \lipsum[1][10]
@@ -90,13 +90,13 @@
 
 \section{Exemplos de disposições}
 
-\begin{frame}[fragile] \frametitle{\lipsum[1][13]}
+\begin{frame}[fragile] \frametitle{Três colunas}
+\vspace{-1em}
 \begin{columns}[t]
 \begin{column}{0.32\linewidth}
   \begin{block}{\lipsum[1][14]}
     \lipsum[1][15-16]
-
-    \vskip1em
+    \vspace{1em}
     \lipsum[1][17-18]
   \end{block}
 \end{column}
@@ -106,6 +106,7 @@
   \end{block}
 \end{column}
 \begin{column}{0.32\linewidth}
+  \vspace{6pt}
   \begin{exampleblock}{}
     \fbox{\includegraphics[width=\linewidth]{figuras/if_v}}
   \end{exampleblock}
@@ -115,32 +116,32 @@
 
 % ------------------------------------------------------------
 
-\begin{frame}[fragile] \frametitle{\lipsum[1][13]}
-\vspace*{-2em}
+\begin{frame}[fragile] \frametitle{Três colunas com dois blocos}
+\vspace{-1em}
 \begin{columns}[t]
 \begin{column}{0.32\linewidth}
   \begin{exampleblock}{} \centering
-    \fbox{\includegraphics[width=0.95\linewidth]{figuras/if_q}}
+    \fbox{\includegraphics[width=0.9\linewidth]{figuras/if_q}}
   \end{exampleblock}
-  \vskip1ex
+  \vspace{0.5em}
   \begin{block}{\lipsum[2][5]}
     \lipsum[2][6]
   \end{block}
 \end{column}
 \begin{column}{0.32\linewidth}
   \begin{exampleblock}{} \centering
-    \fbox{\includegraphics[width=0.95\linewidth]{figuras/if_q}}
+    \fbox{\includegraphics[width=0.9\linewidth]{figuras/if_q}}
   \end{exampleblock}
-  \vskip1ex
+  \vspace{0.5em}
   \begin{block}{\lipsum[2][7]}
     \lipsum[2][8]
   \end{block}
 \end{column}
 \begin{column}{0.32\linewidth}
   \begin{exampleblock}{} \centering
-    \fbox{\includegraphics[width=0.95\linewidth]{figuras/if_q}}
+    \fbox{\includegraphics[width=0.9\linewidth]{figuras/if_q}}
   \end{exampleblock}
-  \vskip1ex
+  \vspace{0.5em}
   \begin{block}{\lipsum[2][10]}
     \lipsum[2][10]
   \end{block}
@@ -150,13 +151,14 @@
 
 % ------------------------------------------------------------
 
-\begin{frame}[fragile] \frametitle{\lipsum[2][11]}
+\begin{frame}[fragile] \frametitle{Duas colunas mescladas}
+\vspace{-2em}
 \begin{columns}[t]
 \begin{column}{0.64\linewidth}
+  \vskip6pt
   \begin{exampleblock}{}
     \fbox{\includegraphics[width=0.96\linewidth]{figuras/if_completa}}
   \end{exampleblock}
-  \vskip1ex
   \begin{columns}[t]
   \begin{column}{0.48\linewidth}
     \begin{block}{\lipsum[2][12]}
@@ -180,7 +182,7 @@
 
 % ------------------------------------------------------------
 
-\begin{frame}[fragile] \frametitle{\lipsum[2][11]}
+\begin{frame}[fragile] \frametitle{Duas colunas com dois blocos e uma terceira coluna maior}
 \begin{columns}
 \begin{column}{0.54\linewidth} \centering
  \begin{tabular}{cc}
@@ -191,11 +193,43 @@
  \end{tabular}
 \end{column}
 \begin{column}{0.45\linewidth}
-  \vspace*{-0.6em}
+  \vspace{-0.6em}
   \begin{alertblock}{\lipsum[3][10]}
     \lipsum[3][11-19]
-    \vspace*{6.5em}
+    \vspace{6.5em}
   \end{alertblock}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile] \frametitle{Três colunas com blocos diferentes}
+\begin{columns}[t]
+\begin{column}{0.33\linewidth}
+\begin{block}{\lipsum[4][2]}
+\begin{itemize} \itemsep1em
+ \item \lipsum[4][1]
+ \item \lipsum[4][3]
+ \item \lipsum[4][4]
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.33\linewidth}
+\begin{alertblock}{\lipsum[4][9]}
+\begin{itemize} \itemsep1em
+ \item \lipsum[4][10]
+ \item \lipsum[4][11]
+ \item \lipsum[4][12]
+\end{itemize}
+\end{alertblock}
+\end{column}
+\begin{column}{0.33\linewidth}
+\begin{exampleblock}{\lipsum[4][5]}
+\begin{itemize} \itemsep1em
+ \item \lipsum[4][6]
+ \item \lipsum[4][7]
+ \item \lipsum[4][8]
+\end{itemize}
+\end{exampleblock}
 \end{column}
 \end{columns}
 \end{frame}
@@ -208,11 +242,11 @@
 
 \begin{frame}[fragile,plain] \frametitle{Fim da Apresentação}
 \begin{center}
- \vspace*{2em}
+ \vspace{1em}
 
  \lipsum[3][20]
 
- \vspace*{2em}
+ \vspace{2em}
  \includegraphics[width=1.5cm]{logoif}
 \end{center}
 \end{frame}
