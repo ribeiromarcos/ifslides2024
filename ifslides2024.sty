@@ -8,10 +8,11 @@
 \RequirePackage{adjustbox}                % Pacote para reduzir/ampliar
 \RequirePackage{ifthen}                   % Pacote para testar condições
 \RequirePackage{tikz}                     % Pacote para desenho
-\usetikzlibrary{shapes,positioning,fit}   % Bibliotecas para desenho
+\usetikzlibrary{shapes,positioning,fit,backgrounds}   % Bibliotecas para desenho
 \RequirePackage[T1]{fontenc}              % Seleção de códigos de fonte
 \RequirePackage[utf8]{inputenc}           % Codificação
 \RequirePackage[brazil]{babel}            % Babel em português
+\RequirePackage{opensans}
 \RequirePackage{helvet}                   % Fonte arial
 \renewcommand{\familydefault}{\sfdefault} % Define arial como fonte padrão
 \RequirePackage{biblatexfix}              % Referências
@@ -54,8 +55,6 @@
 \setbeamercolor{block body alerted}{bg=verde,fg=white}%
 \setbeamerfont{block title alerted}{series=\bfseries}%
 \setbeamercolor{block title alerted}{bg=verde,fg=white}%
-\addtobeamertemplate{block alerted begin}{%
-  \setbeamercolor*{item}{fg=verde,fg=white}}{}%
 
 % Bibliografia
 \setbeamercolor{bibliography entry author}{fg=black}%
@@ -71,25 +70,50 @@
 \setbeamersize{text margin left=5pt,text margin right=5pt}%
 
 % ==================================================
+
+% Logo IFMG
+\tikzstyle{circulo}=[circle, minimum size=1.1cm]%
+\tikzstyle{quadrado}=[rounded corners=0.1cm, minimum size=1cm]%
+\newcommand{\fontopensans}[1]{\opensans\fontsize{#1}{#1}\selectfont}%
+
+\newcommand{\iflogo}{%
+  \begin{tikzpicture}[baseline,node distance=0.2cm,inner sep=0pt]%
+    \node (q12) [quadrado, fill={white}] {};%
+    \node (q13) [quadrado, fill={white}, right=of q12] {};%
+    \node (q22) [quadrado, fill={white}, below=of q12] {};%
+    \node (q21) [quadrado, fill={white}, left=of q22] {};%
+    \node (q31) [quadrado, fill={white}, below=of q21] {};%
+    \node (q32) [quadrado, fill={white}, right=of q31] {};%
+    \node (q33) [quadrado, fill={white}, right=of q32] {};%
+    \node (q41) [quadrado, fill={white}, below=of q31] {};%
+    \node (q42) [quadrado, fill={white}, right=of q41] {};%
+    \node (c) [circulo, fill={white}] at (q12 -| q21) {};%
+    \node (instituto) [white,node distance=0.6cm, below=of q42] {\fontopensans{38.7}\bfseries INSTITUTO};%
+    \node (federal) [white, below=of instituto] {\fontopensans{38.7}\bfseries FEDERAL};%
+    \node (mg) [white,node distance=0.45cm, below=of federal] {\fontopensans{30} Minas Gerais};%
+    \node (linha) [white, node distance=0.4cm, below=of mg] {\rule{8.2cm}{1pt}};%
+    \node (campus) [white, node distance=0.4cm, below=of linha] {\fontopensans{30} Campus};%
+    \node (bamcui) [white, below=of campus] {\fontopensans{30} Bambuí};%
+  \end{tikzpicture}%
+}
+
+% ==================================================
 % Slide principal
 
 \setbeamertemplate{title page}{%
-  \vspace*{-1.2cm}
-  \hbox{%
-    \begin{beamercolorbox}%
-    [wd=\paperwidth,ht=\paperheight,dp=2em,center]{white}%
-      {\Large\bfseries \inserttitle\par}%
-      \vspace*{0.25em}
-      {\bfseries\itshape\insertsubtitle\par}%
-      \vspace*{1.5em}%
-      \insertauthor\par%
-      \ifthenelse{\equal{\insertemail}{}}{}{\small\insertemail\par}%
-      \vspace*{1.5em}%
-      \ifthenelse{\equal{\insertinfo}{}}{}{\footnotesize\insertinfo\par}%
-      {\footnotesize\insertdate}\vspace*{2em}\par%
-      \includegraphics[width=1.5cm]{logoif}\par%
-    \end{beamercolorbox}%
-  }
+  \vspace*{-1cm}
+  \begin{center}
+    {\Large\bfseries \inserttitle\par}%
+    \vfill
+    {\bfseries\itshape\insertsubtitle\par}%
+    \vfill
+    \insertauthor\par%
+    \ifthenelse{\equal{\insertemail}{}}{}{\small\insertemail\par}%
+    \vfill
+    \ifthenelse{\equal{\insertinfo}{}}{}{\footnotesize\insertinfo\par}%
+    {\footnotesize\insertdate}\vspace*{2em}\par%
+    \adjustbox{scale=0.2}{\iflogo}%
+  \end{center}
 }
 
 % ==================================================
@@ -145,33 +169,71 @@
 }%
 
 % ==================================================
-
 % Personalização do bloco padrão
+
 \setbeamercolor{block title}{fg=black}%
 \setbeamertemplate{block begin}{%
-  \vspace*{6.5pt}%
-  \begin{beamercolorbox}[wd=0.95\linewidth,left]{block title}%
-    \begin{tikzpicture}[node distance=10pt,inner sep=0pt]%
-      \node (t) [text width=\linewidth-20pt, align=left] %
-        {\bfseries\insertblocktitle}; %
-      \node (es) [left=of t.north west] {}; %
-      \node (ei) [left=of t.south west] {}; %
-      \node (l) [fill=verde, minimum width=5pt, fit=(es) (ei)] {}; %
-    \end{tikzpicture} %
-    \vskip 0.5ex %
-  \end{beamercolorbox}%
+  \ifthenelse{\equal{\insertblocktitle}{}}{}{%
+    \begin{beamercolorbox}[wd=\linewidth]{block title}%
+      \usebeamerfont*{block title}%
+      \begin{tikzpicture}[node distance=5pt,inner sep=0pt]%
+        \node (t) [text width=0.9\linewidth, align=left, inner sep=3pt] %
+          {\bfseries\insertblocktitle}; %
+        \node (es) [left=of t.north west] {}; %
+        \node (ei) [left=of t.south west] {}; %
+        \node (l) [fill=verde, minimum width=5pt, fit=(es) (ei)] {}; %
+      \end{tikzpicture} %
+    \end{beamercolorbox}%
+    {\parskip0pt\par}%
+  } %
+  \ifbeamercolorempty[bg]{block title}{} %
+    {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
   \usebeamerfont{block body}%
-  \begin{beamercolorbox}[wd=0.95\linewidth]{block body}%
+  \begin{beamercolorbox}[wd=\linewidth,vmode,sep=5pt]{block body}%
+     \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
 } %
 \setbeamertemplate{block end}{ %
   \end{beamercolorbox} %
 } %
 
 % ==================================================
-
 % Personalização do bloco exemplo
-\setbeamertemplate{block example begin}{} %
-\setbeamertemplate{block example end}{} %
+
+\setbeamertemplate{block example begin}{%
+  \ifthenelse{\equal{\insertblocktitle}{}}{}{ %
+    \begin{beamercolorbox}[colsep*=.75ex]{block title example} %
+      \usebeamerfont*{block title example}\bfseries\insertblocktitle%
+    \end{beamercolorbox}%
+    {\parskip0pt\par}%
+  }
+  \usebeamerfont{block body example}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body example}%
+      \ifbeamercolorempty[bg]{block body example}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+} %
+\setbeamertemplate{block example end}{ %
+  \end{beamercolorbox} %
+} %
+
+% ==================================================
+% Personalização do bloco de alerta
+
+\setbeamertemplate{block alerted begin}{%
+  \ifthenelse{\equal{\insertblocktitle}{}}{}{ %
+    \begin{beamercolorbox}[colsep*=.75ex]{block title alerted} %
+      \usebeamerfont*{block title alerted}\insertblocktitle%
+    \end{beamercolorbox}%
+    {\parskip0pt\par}%
+  } %
+  \ifbeamercolorempty[bg]{block title alerted}{} %
+  {\ifbeamercolorempty[bg]{block body alerted}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body alerted}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body alerted}%
+    \setbeamercolor*{item}{fg=verde,fg=white} %
+    \ifbeamercolorempty[bg]{block body alerted}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\setbeamertemplate{block alerted end}{ %
+  \end{beamercolorbox}
+} %
 
 % ==================================================
 

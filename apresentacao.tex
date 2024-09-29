@@ -27,6 +27,7 @@
   \titlepage
 \end{frame}
 
+
 % ------------------------------------------------------------
 
 % Sumário
@@ -106,7 +107,7 @@
   \end{block}
 \end{column}
 \begin{column}{0.32\linewidth}
-  \vspace{6pt}
+%   \vspace{6pt}
   \begin{exampleblock}{}
     \fbox{\includegraphics[width=\linewidth]{figuras/if_v}}
   \end{exampleblock}
@@ -155,7 +156,6 @@
 \vspace{-2em}
 \begin{columns}[t]
 \begin{column}{0.64\linewidth}
-  \vskip6pt
   \begin{exampleblock}{}
     \fbox{\includegraphics[width=0.96\linewidth]{figuras/if_completa}}
   \end{exampleblock}
@@ -193,7 +193,6 @@
  \end{tabular}
 \end{column}
 \begin{column}{0.45\linewidth}
-  \vspace{-0.6em}
   \begin{alertblock}{\lipsum[3][10]}
     \lipsum[3][11-19]
     \vspace{6.5em}
@@ -204,7 +203,7 @@
 
 \begin{frame}[fragile] \frametitle{Três colunas com blocos diferentes}
 \begin{columns}[t]
-\begin{column}{0.33\linewidth}
+\begin{column}{0.32\linewidth}
 \begin{block}{\lipsum[4][2]}
 \begin{itemize} \itemsep1em
  \item \lipsum[4][1]
@@ -213,7 +212,7 @@
 \end{itemize}
 \end{block}
 \end{column}
-\begin{column}{0.33\linewidth}
+\begin{column}{0.32\linewidth}
 \begin{alertblock}{\lipsum[4][9]}
 \begin{itemize} \itemsep1em
  \item \lipsum[4][10]
@@ -222,7 +221,7 @@
 \end{itemize}
 \end{alertblock}
 \end{column}
-\begin{column}{0.33\linewidth}
+\begin{column}{0.32\linewidth}
 \begin{exampleblock}{\lipsum[4][5]}
 \begin{itemize} \itemsep1em
  \item \lipsum[4][6]
@@ -236,18 +235,18 @@
 
 \section{Referências}
 
+% Quando um slide não for suficiente paras as fereências use:
+% \begin{frame}[fragile,allowframebreaks] \frametitle{Referências}
 \begin{frame}[fragile] \frametitle{Referências}
   \printbibliography
 \end{frame}
 
 \begin{frame}[fragile,plain] \frametitle{Fim da Apresentação}
 \begin{center}
- \vspace{1em}
-
- \lipsum[3][20]
-
- \vspace{2em}
- \includegraphics[width=1.5cm]{logoif}
+  \vfill
+  \lipsum[3][20]
+  \vfill
+  \adjustbox{width=2cm}{\iflogo}
 \end{center}
 \end{frame}
 
