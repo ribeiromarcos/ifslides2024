@@ -77,6 +77,7 @@
 \newcommand{\fontopensans}[1]{\opensans\fontsize{#1}{#1}\selectfont}%
 
 \newcommand{\iflogo}{%
+  \renewcommand{\arraystretch}{1.2}%
   \begin{tikzpicture}[baseline,node distance=0.2cm,inner sep=0pt]%
     \node (q12) [quadrado, fill={white}] {};%
     \node (q13) [quadrado, fill={white}, right=of q12] {};%
@@ -88,12 +89,11 @@
     \node (q41) [quadrado, fill={white}, below=of q31] {};%
     \node (q42) [quadrado, fill={white}, right=of q41] {};%
     \node (c) [circulo, fill={white}] at (q12 -| q21) {};%
-    \node (instituto) [white,node distance=0.6cm, below=of q42] {\fontopensans{38.7}\bfseries INSTITUTO};%
-    \node (federal) [white, below=of instituto] {\fontopensans{38.7}\bfseries FEDERAL};%
+    \node (instituto) [white,node distance=0.7cm, below=of q42] {\bfseries\fontopensans{38.7} INSTITUTO};%
+    \node (federal) [white, below=of instituto] {\bfseries\fontopensans{38.7} FEDERAL};%
     \node (mg) [white,node distance=0.45cm, below=of federal] {\fontopensans{30} Minas Gerais};%
     \node (linha) [white, node distance=0.4cm, below=of mg] {\rule{8.2cm}{1pt}};%
-    \node (campus) [white, node distance=0.4cm, below=of linha] {\fontopensans{30} Campus};%
-    \node (bamcui) [white, below=of campus] {\fontopensans{30} Bambuí};%
+    \node (campus) [white, node distance=0.4cm, below=of linha] {\fontopensans{30} \begin{tabular}{c} \insertcampus \end{tabular}};%
   \end{tikzpicture}%
 }
 
@@ -112,7 +112,7 @@
     \vfill
     \ifthenelse{\equal{\insertinfo}{}}{}{\footnotesize\insertinfo\par}%
     {\footnotesize\insertdate}\vspace*{2em}\par%
-    \adjustbox{scale=0.2}{\iflogo}%
+    \adjustbox{scale=0.25}{\iflogo}%
   \end{center}
 }
 
